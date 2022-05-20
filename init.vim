@@ -15,6 +15,7 @@ luafile $HOME/.config/nvim/lua/_luasnip.lua
 luafile $HOME/.config/nvim/lua/_gitsigns.lua
 luafile $HOME/.config/nvim/lua/_lualine.lua
 luafile $HOME/.config/nvim/lua/_indent-blankline.lua
+luafile $HOME/.config/nvim/lua/_navigator.lua
 
 " Sets
 

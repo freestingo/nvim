@@ -39,5 +39,7 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'kdheepak/tabline.nvim'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'tpope/vim-repeat'
+Plug 'wesQ3/vim-windowswap'
+Plug 'numToStr/Navigator.nvim'
 
 call plug#end()
