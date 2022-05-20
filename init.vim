@@ -6,7 +6,6 @@ source $HOME/.config/nvim/plug-config/telescope.vim
 source $HOME/.config/nvim/plug-config/vim-fugitive.vim
 source $HOME/.config/nvim/plug-config/tig-explorer.vim
 source $HOME/.config/nvim/plug-config/vim-highlightedyank.vim
-source $HOME/.config/nvim/plug-config/vim-visual-multi.vim
 source $HOME/.config/nvim/plug-config/language-client-neovim.vim
 luafile $HOME/.config/nvim/lua/_treesitter.lua
 luafile $HOME/.config/nvim/lua/_neovim-session-manager.lua
