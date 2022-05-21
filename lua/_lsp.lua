@@ -35,7 +35,6 @@ require('nvim-lsp-installer').setup{}
 require('lspconfig').angularls.setup{ on_attach = custom_lsp_attach, capabilities = capabilities }
 require('lspconfig').cssls.setup{ on_attach = custom_lsp_attach, capabilities = capabilities }
 require('lspconfig').erlangls.setup{ on_attach = custom_lsp_attach, capabilities = capabilities }
-require('lspconfig').eslint.setup{ on_attach = custom_lsp_attach, capabilities = capabilities }
 require('lspconfig').hls.setup{ on_attach = custom_lsp_attach, capabilities = capabilities }
 require('lspconfig').html.setup{ on_attach = custom_lsp_attach, capabilities = capabilities }
 require('lspconfig').intelephense.setup{ on_attach = custom_lsp_attach, capabilities = capabilities }
