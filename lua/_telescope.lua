@@ -1,5 +1,5 @@
 local builtin = require('telescope.builtin')
-local custom = require('_telescope-custom-functions')
+local custom = require('_telescope.custom-functions')
 local actions = require('telescope.actions')
 local fb_actions = require('telescope').extensions.file_browser.actions
 
