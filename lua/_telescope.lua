@@ -31,7 +31,22 @@ require('telescope').setup {
       , ["<m-q>"] = false
       , ["<c-q>"] = false
       , ["<c-q>"] = actions.send_selected_to_loclist + actions.open_loclist
-      , ["<a-s-d>"] = actions.delete_buffer
+      }
+    }
+  },
+  pickers = {
+    buffers = {
+      mappings = {
+        i = {
+          ["<a-d>"] = actions.delete_buffer
+        }
+      }
+    },
+    git_branches = {
+      mappings = {
+        i = {
+          ["<a-c>"] = custom.find_changed_files_since_branch
+        }
       }
     }
   },

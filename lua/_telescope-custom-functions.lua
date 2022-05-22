@@ -1,3 +1,7 @@
+local previewers = require "telescope.previewers"
+local putils = require "telescope.previewers.utils"
+local from_entry = require "telescope.from_entry"
+
 local M = {}
 
 M.current_buffer_search = function()
@@ -107,7 +111,84 @@ M.live_grep_in_selected_folders = function(opts)
     end,
   }):find()
 end
--- END
+
+local function defaulter(f, default_opts)
+  default_opts = default_opts or {}
+  return {
+    new = function(opts)
+      if conf.preview == false and not opts.preview then
+        return false
+      end
+      opts.preview = type(opts.preview) ~= "table" and {} or opts.preview
+      if type(conf.preview) == "table" then
+        for k, v in pairs(conf.preview) do
+          opts.preview[k] = vim.F.if_nil(opts.preview[k], v)
+        end
+      end
+      return f(opts)
+    end,
+    __call = function()
+      local ok, err = pcall(f(default_opts))
+      if not ok then
+        error(debug.traceback(err))
+      end
+    end,
+  }
+end
+
+local git_file_diff_from_branch = defaulter(function(opts)
+  return previewers.new_buffer_previewer {
+    title = "Git File Diff Preview",
+    get_buffer_by_name = function(_, entry)
+      return entry.value
+    end,
+
+    define_preview = function(self, entry, status)
+      if entry.status and (entry.status == "??" or entry.status == "A ") then
+        local p = from_entry.path(entry, true)
+        if p == nil or p == "" then
+          return
+        end
+        conf.buffer_previewer_maker(p, self.state.bufnr, {
+          bufname = self.state.bufname,
+          winid = self.state.winid,
+        })
+      else
+        putils.job_maker({ "git", "--no-pager", "diff", opts.branch_name .. "..HEAD", "--", entry.value }, self.state.bufnr, {
+          value = entry.value,
+          bufname = self.state.bufname,
+          cwd = opts.cwd,
+        })
+        putils.regex_highlighter(self.state.bufnr, "diff")
+      end
+    end,
+  }
+end, {})
+
+-- inspiration from https://www.reddit.com/r/neovim/comments/uu0pqb/telescope_picker_to_browse_your_changed_files/
+-- also check `:h telescope.defaults.mappings`
+M.find_changed_files_since_branch = function(prompt_bufnr)
+  local branch_name = action_state.get_selected_entry().value
+  local command = "git diff --name-only $(git merge-base HEAD " .. branch_name .. ")"
+	local handle = io.popen(command)
+	local result = handle:read("*a")
+	handle:close()
+
+	local files = {}
+	for token in string.gmatch(result, "[^%s]+") do
+	   table.insert(files, token)
+	end
+
+  local opts = {} -- TODO: find a way to pass these in
+	pickers.new(opts, {
+		prompt_title = "Changed files since " .. branch_name,
+    previewer = git_file_diff_from_branch.new({ branch_name = branch_name }),
+		finder = finders.new_table {
+			results = files
+		},
+		sorter = conf.generic_sorter(opts),
+	}):find()
+end
 
 -- this is lua's way to export stuff from modules (kinda like oldschool javascript)
 return M
