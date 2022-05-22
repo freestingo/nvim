@@ -20,6 +20,7 @@ require('_which-key')
 require('_telescope-zoxide')
 require('_tig-explorer')
 require('_telescope')
+require('_trim')
 
 -- sets
 local set = vim.opt
