@@ -21,6 +21,7 @@ require('_telescope-zoxide')
 require('_tig-explorer')
 require('_telescope')
 require('_trim')
+require('_tabout')
 
 -- sets
 local set = vim.opt
@@ -43,8 +44,8 @@ set.scrolloff = 4
 set.showmode = false
 set.completeopt = { 'menuone', 'noinsert', 'noselect' }
 set.cmdheight = 2
-vim.cmd([[ 
-set signcolumn=yes 
+vim.cmd([[
+set signcolumn=yes
 set clipboard+=unnamedplus
 set guicursor+=a:blinkon1
 set iskeyword-=_

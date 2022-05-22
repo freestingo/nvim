@@ -46,6 +46,7 @@ Plug 'jvgrootveld/telescope-zoxide'
 Plug 'famiu/bufdelete.nvim'
 Plug 'meain/vim-printer'
 Plug 'cappyzawa/trim.nvim'
+Plug 'abecodes/tabout.nvim'
 
 call plug#end()
 ]])
