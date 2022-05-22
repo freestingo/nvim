@@ -24,13 +24,10 @@ require('telescope').setup {
     },
     mappings = {
       i = {
-        ["<c-a>"] = fb_actions.create
-      , ["<c-w>"] = false -- remove shortcut conflict when deleting text in file_browser
-        -- disable default quick-fix-related actions and remapping them
+        ["<c-w>"] = false -- remove shortcut conflict when deleting text in file_browser
         -- removing all key-shortcut conflicts with XMonad
       , ["<m-q>"] = false
       , ["<c-q>"] = false
-      , ["<c-q>"] = actions.send_selected_to_loclist + actions.open_loclist
       }
     }
   },
