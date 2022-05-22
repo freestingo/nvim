@@ -1,3 +1,4 @@
+vim.cmd([[
 call plug#begin('~/.vim/plugged')
 
 Plug 'williamboman/nvim-lsp-installer'
@@ -16,7 +17,6 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': 'TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
@@ -45,5 +45,8 @@ Plug 'folke/which-key.nvim'
 Plug 'jvgrootveld/telescope-zoxide'
 Plug 'famiu/bufdelete.nvim'
 Plug 'meain/vim-printer'
+Plug 'cappyzawa/trim.nvim'
 
 call plug#end()
+]])
+

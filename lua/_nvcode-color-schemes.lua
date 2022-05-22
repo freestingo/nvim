@@ -1,8 +1,9 @@
-let g:nvcode_termcolors=256
+vim.g.nvcode_termcolors = 256
+vim.g.airline_theme = 'onedark'
 
+vim.cmd([[
 syntax on
 colorscheme github
-let g:airline_theme='onedark'
 
 if (has("termguicolors"))
     set termguicolors
@@ -13,3 +14,4 @@ endif
 " Remember to turn transparent background on for the terminal as well.
 hi! Normal ctermbg=NONE guibg=NONE
 hi! SignColumn ctermbg=NONE guibg=NONE
+]])

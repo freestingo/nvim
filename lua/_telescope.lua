@@ -1,3 +1,5 @@
+local builtin = require('telescope.builtin')
+local custom = require('_telescope-custom-functions')
 local actions = require('telescope.actions')
 local fb_actions = require('telescope').extensions.file_browser.actions
 
@@ -47,119 +49,90 @@ require('telescope').load_extension('fzf')
 require('telescope').load_extension('file_browser')
 require('telescope').load_extension('frecency')
 require('telescope').load_extension('ui-select')
-require'telescope'.load_extension('zoxide')
+require('telescope').load_extension('zoxide')
 
--- declaring my own custom mappings here
-local my_mappings = {}
+-- Lists files in your current working directory, respects .gitignore
+vim.keymap.set('n', '<leader>ff', builtin.find_files)
 
-my_mappings.current_buffer_search = function()
-  require('telescope.builtin').current_buffer_fuzzy_find({
-    layout_config = {
-      prompt_position = "top"
-    },
-    sorting_strategy = "ascending"
-  })
-end
+-- Lists files in ~/.config/nvim/ (for easier vimrc editing)
+vim.keymap.set('n', '<leader>vff', custom.find_neovim_config_files)
 
-my_mappings.find_neovim_config_files = function()
-  require('telescope.builtin').find_files({
-    prompt_title = "NeoVim Config",
-    cwd = "~/.config/nvim"
-  })
-end
+-- Lists files in ~/.xmonad/lib/ (for easier xmonad config editing)
+vim.keymap.set('n', '<leader>xff', custom.find_xmonad_config_files)
 
-my_mappings.live_grep_config_files = function()
-  require('telescope.builtin').live_grep({
-    prompt_title = "Search in NeoVim Config",
-    cwd = "~/.config/nvim"
-  })
-end
+-- Search for a string in your current working directory and get results live as you type (respecting .gitignore)
+vim.keymap.set('n', '<leader>fg', builtin.live_grep)
 
-my_mappings.file_browser_config_files = function()
-  require('telescope').extensions.file_browser.file_browser({
-    prompt_title = "Files in NeoVim Config",
-    cwd = "~/.config/nvim"
-  })
-end
+-- Search for a string only in selected folders (mnemonic: 'restricted find grep')
+vim.keymap.set('n', '<leader>rfg', custom.live_grep_in_selected_folders)
 
-my_mappings.find_xmonad_config_files = function()
-  require('telescope.builtin').find_files({
-    prompt_title = "XMonad Config",
-    cwd = "~/.xmonad/lib"
-  })
-end
+-- Search for a string in ~/.config/nvim/
+vim.keymap.set('n', '<leader>vfg', custom.live_grep_config_files)
 
-my_mappings.live_grep_xmonad_config_files = function()
-  require('telescope.builtin').live_grep({
-    prompt_title = "Search in XMonad Config",
-    cwd = "~/.xmonad/lib"
-  })
-end
+-- Search for a string in ~/.xmonad/lib/
+vim.keymap.set('n', '<leader>xfg', custom.live_grep_xmonad_config_files)
 
-my_mappings.file_browser_xmonad_config_files = function()
-  require('telescope').extensions.file_browser.file_browser({
-    prompt_title = "Files in XMonad Config",
-    cwd = "~/.config/nvim"
-  })
-end
+-- Lists open buffers in current neovim instance
+vim.keymap.set('n', '<leader>bb', builtin.buffers)
 
-my_mappings.file_browser_current_buffer = function()
-  require('telescope').extensions.file_browser.file_browser({
-    prompt_title = "Current Buffer Location",
-    path = '%:p:h'
-  })
-end
+-- Lists available help tags and opens a new window with the relevant help info on <cr>
+vim.keymap.set('n', '<leader>fh', builtin.help_tags)
 
--- thank you!!!!
--- https://www.reddit.com/r/neovim/comments/r74647/how_to_live_grep_in_telescope_on_certain_folders/hmx0w58/
-local Path = require "plenary.path"
-local action_set = require "telescope.actions.set"
-local action_state = require "telescope.actions.state"
-local conf = require("telescope.config").values
-local finders = require "telescope.finders"
-local make_entry = require "telescope.make_entry"
-local os_sep = Path.path.sep
-local pickers = require "telescope.pickers"
-local scan = require "plenary.scandir"
+-- Searches for the string under your cursor in your current working directory
+vim.keymap.set('n', '<leader>*', builtin.grep_string)
 
-my_mappings.live_grep_in_selected_folders = function(opts)
-  opts = opts or {}
-  local data = {}
-  scan.scan_dir(vim.loop.cwd(), {
-    hidden = opts.hidden,
-    only_dirs = true,
-    respect_gitignore = opts.respect_gitignore,
-    on_insert = function(entry)
-      table.insert(data, entry .. os_sep)
-    end,
-  })
-  table.insert(data, 1, "." .. os_sep)
+-- Lists files and folders in your current working directory, open files, navigate your filesystem, and create new files and folders
+vim.keymap.set('n', '<leader>fb', function() require('telescope').extensions.file_browser.file_browser({ hidden = true }) end)
 
-  pickers.new(opts, {
-    prompt_title = "Folders for Live Grep",
-    finder = finders.new_table { results = data, entry_maker = make_entry.gen_from_file(opts) },
-    previewer = conf.file_previewer(opts),
-    sorter = conf.file_sorter(opts),
-    attach_mappings = function(prompt_bufnr)
-      action_set.select:replace(function()
-        local current_picker = action_state.get_current_picker(prompt_bufnr)
-        local dirs = {}
-        local selections = current_picker:get_multi_selection()
-        if vim.tbl_isempty(selections) then
-          table.insert(dirs, action_state.get_selected_entry().value)
-        else
-          for _, selection in ipairs(selections) do
-            table.insert(dirs, selection.value)
-          end
-        end
-        actions._close(prompt_bufnr, current_picker.initial_mode == "insert")
-        require("telescope.builtin").live_grep { search_dirs = dirs }
-      end)
-      return true
-    end,
-  }):find()
-end
--- END
+-- Lists files and folders from your current buffer's directory
+vim.keymap.set('n', '<leader>cfb', custom.file_browser_current_buffer)
 
--- this is lua's way to export stuff from modules (kinda like oldschool javascript)
-return my_mappings
+-- Lists files and folders in ~/.config/nvim/
+vim.keymap.set('n', '<leader>vfb', custom.file_browser_config_files)
+
+-- Lists files and folders in ~/.xmonad/lib/
+vim.keymap.set('n', '<leader>xfb', custom.file_browser_xmonad_config_files)
+
+-- Lists items from the current window's location list
+vim.keymap.set('n', '<leader>loc', builtin.loclist)
+
+-- Lists available plugin/user commands and runs them on <CR>
+vim.keymap.set('n', '<leader>cmd', builtin.commands)
+
+-- Lists vim options, allows you to edit the current value on <CR>
+vim.keymap.set('n', '<leader>vopt', builtin.vim_options)
+
+-- Lists vim registers, pastes the contents of the register on <CR>
+vim.keymap.set('n', '<leader>rg', builtin.registers)
+
+-- Live fuzzy search inside of the current open buffer
+vim.keymap.set('n', '<C-_>', custom.current_buffer_search)
+
+-- Open previous picker in its identical state (incl. multi selections)
+vim.keymap.set('n', '<leader>rs', builtin.resume)
+
+-- Lists cached pickers
+vim.keymap.set('n', '<leader>pk', builtin.pickers)
+
+-- Lists searches that were executed recently, and reruns them on <CR>
+vim.keymap.set('n', '<leader>se', builtin.search_history)
+
+-- Lists normal mode keymappings
+vim.keymap.set('n', '<leader>km', builtin.keymaps)
+
+-- Lists manpage entries
+vim.keymap.set('n', '<leader>man', builtin.man_pages)
+
+-- Lists built-in pickers and run them on <CR>
+vim.keymap.set('n', '<leader>bi', builtin.builtin)
+
+-- Lists recently opened files
+vim.keymap.set('n', '<leader>of', builtin.oldfiles)
+
+-- Lists 'frecent' files
+vim.keymap.set('n', '<leader>fr', require('telescope').extensions.frecency.frecency)
+
+-- telescope-Git mappings
+vim.keymap.set('n', '<leader>gbr', builtin.git_branches)
+vim.keymap.set('n', '<leader>gst', builtin.git_status)
+
