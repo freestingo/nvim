@@ -22,6 +22,7 @@ require('_tig-explorer')
 require('_telescope')
 require('_trim')
 require('_tabout')
+require('_comment')
 
 -- sets
 local set = vim.opt

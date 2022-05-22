@@ -16,7 +16,6 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': 'TSUpdate'}
 Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'nvim-treesitter/playground'
@@ -48,6 +47,7 @@ Plug 'meain/vim-printer'
 Plug 'cappyzawa/trim.nvim'
 Plug 'abecodes/tabout.nvim'
 Plug 'freestingo/telescope-changed-files'
+Plug 'numToStr/Comment.nvim'
 
 call plug#end()
 ]])
