@@ -41,5 +41,7 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'tpope/vim-repeat'
 Plug 'wesQ3/vim-windowswap'
 Plug 'numToStr/Navigator.nvim'
+Plug 'folke/which-key.nvim'
+Plug 'jvgrootveld/telescope-zoxide'
 
 call plug#end()

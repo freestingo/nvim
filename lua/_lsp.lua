@@ -41,6 +41,7 @@ require('lspconfig').intelephense.setup{ on_attach = custom_lsp_attach, capabili
 require('lspconfig').jsonls.setup{ on_attach = custom_lsp_attach, capabilities = capabilities }
 require('lspconfig').phpactor.setup{ on_attach = custom_lsp_attach, capabilities = capabilities }
 require('lspconfig').rust_analyzer.setup{ on_attach = custom_lsp_attach, capabilities = capabilities }
+require('lspconfig').sumneko_lua.setup{ on_attach = custom_lsp_attach, capabilities = capabilities }
 require('lspconfig').tsserver.setup{ on_attach = custom_lsp_attach, capabilities = capabilities }
 require('lspconfig').emmet_ls.setup{
   on_attach = custom_lsp_attach,

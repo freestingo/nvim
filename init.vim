@@ -16,6 +16,8 @@ luafile $HOME/.config/nvim/lua/_gitsigns.lua
 luafile $HOME/.config/nvim/lua/_lualine.lua
 luafile $HOME/.config/nvim/lua/_indent-blankline.lua
 luafile $HOME/.config/nvim/lua/_navigator.lua
+luafile $HOME/.config/nvim/lua/_which-key.lua
+luafile $HOME/.config/nvim/lua/_telescope-zoxide.lua
 
 " Sets
 
