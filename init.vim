@@ -7,6 +7,7 @@ source $HOME/.config/nvim/plug-config/vim-fugitive.vim
 source $HOME/.config/nvim/plug-config/tig-explorer.vim
 source $HOME/.config/nvim/plug-config/vim-highlightedyank.vim
 source $HOME/.config/nvim/plug-config/language-client-neovim.vim
+source $HOME/.config/nvim/plug-config/_vim-printer.vim
 luafile $HOME/.config/nvim/lua/_treesitter.lua
 luafile $HOME/.config/nvim/lua/_neovim-session-manager.lua
 luafile $HOME/.config/nvim/lua/_nvim-cmp.lua
@@ -74,7 +75,7 @@ inoremap <C-e><C-n> <Esc>
 
 inoremap kj <ESC>
 inoremap <expr> <Tab> search('\%#[]>)}''"`]', 'n') ? '<Right>' : '<Tab>'
-nnoremap <C-c> :bd<CR>
+nnoremap <C-c> :Bdelete<CR> " delete buffer and preserve layout
 nnoremap <C-s> :w<CR>
 nnoremap <F4> :lua package.loaded._telescope = nil<CR>:lua package.loaded._treesitter =  nil<CR>:source ~/.config/nvim/init.vim<CR>
 nnoremap <leader>ex :wincmd v <bar> :Ex <bar> :vertical resize 40<CR>

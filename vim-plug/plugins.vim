@@ -43,5 +43,7 @@ Plug 'wesQ3/vim-windowswap'
 Plug 'numToStr/Navigator.nvim'
 Plug 'folke/which-key.nvim'
 Plug 'jvgrootveld/telescope-zoxide'
+Plug 'famiu/bufdelete.nvim'
+Plug 'meain/vim-printer'
 
 call plug#end()
