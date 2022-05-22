@@ -2,6 +2,7 @@ local builtin = require('telescope.builtin')
 local custom = require('_telescope.custom-functions')
 local actions = require('telescope.actions')
 local fb_actions = require('telescope').extensions.file_browser.actions
+local cf_actions = require('telescope').extensions.changed_files.actions
 
 require('telescope').setup {
   defaults = {
@@ -42,7 +43,7 @@ require('telescope').setup {
     git_branches = {
       mappings = {
         i = {
-          ["<a-c>"] = custom.find_changed_files_since_branch
+          ["<a-c>"] = cf_actions.find_changed_files
         }
       }
     }
@@ -62,6 +63,7 @@ require('telescope').load_extension('file_browser')
 require('telescope').load_extension('frecency')
 require('telescope').load_extension('ui-select')
 require('telescope').load_extension('zoxide')
+require('telescope').load_extension('changed_files')
 
 -- Lists files in your current working directory, respects .gitignore
 vim.keymap.set('n', '<leader>ff', builtin.find_files)
