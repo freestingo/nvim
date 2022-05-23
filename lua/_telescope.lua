@@ -1,6 +1,7 @@
 local builtin = require('telescope.builtin')
 local custom = require('_telescope.custom-functions')
 local actions = require('telescope.actions')
+local themes = require('telescope.themes')
 local fb_actions = require('telescope').extensions.file_browser.actions
 local cf_actions = require('telescope').extensions.changed_files.actions
 
@@ -41,9 +42,11 @@ require('telescope').setup {
       }
     },
     git_branches = {
+      theme = 'dropdown',
       mappings = {
         i = {
-          ["<a-c>"] = cf_actions.find_changed_files
+          ["<CR>"] = cf_actions.find_changed_files,
+          ["<a-c>"] = actions.git_checkout
         }
       }
     }
@@ -149,4 +152,3 @@ vim.keymap.set('n', '<leader>fr', require('telescope').extensions.frecency.frece
 -- telescope-Git mappings
 vim.keymap.set('n', '<leader>gbr', builtin.git_branches)
 vim.keymap.set('n', '<leader>gst', builtin.git_status)
-
