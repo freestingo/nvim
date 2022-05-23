@@ -49,6 +49,7 @@ Plug 'cappyzawa/trim.nvim'
 Plug 'abecodes/tabout.nvim'
 Plug 'freestingo/telescope-changed-files'
 Plug 'numToStr/Comment.nvim'
+Plug 'nvim-telescope/telescope-symbols.nvim'
 
 call plug#end()
 ]])
