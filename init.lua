@@ -23,6 +23,7 @@ require('_telescope')
 require('_trim')
 require('_tabout')
 require('_comment')
+require('_neo-tree')
 
 -- sets
 local set = vim.opt
@@ -90,4 +91,3 @@ vim.keymap.set('v', 'p', 'pgvy') -- paste on visual selection and restore overri
 
 vim.keymap.set('t', 'shq', '<C-\\><C-n>:bd!<CR>', { silent = true })
 vim.keymap.set('t', 'shf', '<C-\\><C-n>', { silent = true })
-

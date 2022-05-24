@@ -50,6 +50,8 @@ Plug 'abecodes/tabout.nvim'
 Plug 'freestingo/telescope-changed-files'
 Plug 'numToStr/Comment.nvim'
 Plug 'nvim-telescope/telescope-symbols.nvim'
+Plug 'nvim-neo-tree/neo-tree.nvim'
+Plug 'MunifTanjim/nui.nvim'
 
 call plug#end()
 ]])
