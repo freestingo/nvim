@@ -1,5 +1,7 @@
 local z_utils = require("telescope._extensions.zoxide.utils")
+local themes = require('telescope.themes')
 local file_browser = require('telescope').extensions.file_browser
+local zoxide = require('telescope').extensions.zoxide
 
 require("telescope._extensions.zoxide.config").setup({
   prompt_title = "Zoxide Folder List",
@@ -13,4 +15,4 @@ require("telescope._extensions.zoxide.config").setup({
   }
 })
 
-vim.keymap.set("n", "<leader>cd", ":lua require'telescope'.extensions.zoxide.list{}<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>cd", function() zoxide.list(themes.get_dropdown{}) end, { noremap = true, silent = true })
