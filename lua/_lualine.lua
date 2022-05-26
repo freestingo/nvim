@@ -43,5 +43,7 @@ require('lualine').setup {
   extensions = {}
 }
 
-vim.keymap.set('n', 'H', '<cmd>TablineBufferPrevious<CR>', { silent = true })
-vim.keymap.set('n', 'L', '<cmd>TablineBufferNext<CR>', { silent = true })
+vim.keymap.set('n', 'H', '<cmd>TablineBufferPrevious<CR>',
+  { desc = "Go to previous buffer on bufferline", silent = true })
+vim.keymap.set('n', 'L', '<cmd>TablineBufferNext<CR>',
+  { desc = "Go to next buffer on bufferline", silent = true })

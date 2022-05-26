@@ -16,7 +16,6 @@ require('_gitsigns')
 require('_lualine')
 require('_indent-blankline')
 require('_navigator')
-require('_which-key')
 require('_telescope-zoxide')
 require('_tig-explorer')
 require('_telescope')
@@ -24,6 +23,7 @@ require('_trim')
 require('_tabout')
 require('_comment')
 require('_neo-tree')
+require('_key-menu')
 
 -- sets
 local set = vim.opt
@@ -80,14 +80,32 @@ autocmd TermOpen * startinsert
 ]])
 
 -- remaps
-vim.keymap.set('i', '<C-e><C-n>', '<Esc>') -- for optimizing colemak layout
-vim.keymap.set('i', 'kj', '<ESC>')
-vim.keymap.set('n', '<C-c>', '<cmd>Bdelete<CR>', { silent = true }) -- delete buffer and preserve layout
-vim.keymap.set('n', '<C-s>', '<cmd>w<CR>', { silent = true })
-vim.keymap.set('n', '<leader>sh', '<cmd>wincmd s <bar> :wincmd w <bar> :resize 10 <bar> :terminal<CR>', { silent = true })
-vim.keymap.set('n', '<leader>ghci', '<cmd>wincmd s <bar> :wincmd w <bar> :terminal<CR>stack ghci<CR>', { silent = true })
-vim.keymap.set('n', '<leader>now', '"=strftime("%d-%m-%Y - %R")<CR>p', { silent = true })
-vim.keymap.set('v', 'p', 'pgvy') -- paste on visual selection and restore overridden paste register
+vim.keymap.set('i', '<C-e><C-n>', '<Esc>',
+  { desc = "Esc remap (colemak layout optimization)" })
 
-vim.keymap.set('t', 'shq', '<C-\\><C-n>:bd!<CR>', { silent = true })
-vim.keymap.set('t', 'shf', '<C-\\><C-n>', { silent = true })
+vim.keymap.set('i', 'kj', '<ESC>',
+  { desc = "Esc remap" })
+
+vim.keymap.set('n', '<C-c>', '<cmd>Bdelete<CR>',
+  { desc = "Delete buffer and preserve layout", silent = true })
+
+vim.keymap.set('n', '<C-s>', '<cmd>w<CR>',
+  { desc = "Save current buffer", silent = true })
+
+vim.keymap.set('n', '<leader>sh', '<cmd>wincmd s <bar> :wincmd w <bar> :resize 10 <bar> :terminal<CR>',
+  { desc = "Open terminal in horizontal split", silent = true })
+
+vim.keymap.set('n', '<leader>ghci', '<cmd>wincmd s <bar> :wincmd w <bar> :terminal<CR>stack ghci<CR>',
+  { desc = "Open ghci repl in horizontal split", silent = true })
+
+vim.keymap.set('n', '<leader>now', '"=strftime("%d-%m-%Y - %R")<CR>p',
+  { desc = "Write current date and time to buffer", silent = true })
+
+vim.keymap.set('v', 'p', 'pgvy',
+  { desc = "Paste on visual selection and restore overridden paste register" })
+
+vim.keymap.set('t', 'shq', '<C-\\><C-n>:bd!<CR>',
+  { desc = "Close terminal buffer and its split", silent = true })
+
+vim.keymap.set('t', 'shf', '<C-\\><C-n>',
+  { desc = "Exit insert mode on terminal", silent = true })

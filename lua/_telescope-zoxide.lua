@@ -15,4 +15,5 @@ require("telescope._extensions.zoxide.config").setup({
   }
 })
 
-vim.keymap.set("n", "<leader>cd", function() zoxide.list(themes.get_dropdown{}) end, { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>cd", function() zoxide.list(themes.get_dropdown{}) end,
+  { desc = "Navigate to folder using zoxide", noremap = true, silent = true })

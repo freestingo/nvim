@@ -41,6 +41,14 @@ require('telescope').setup {
         }
       }
     },
+    keymaps = {
+      theme = 'dropdown',
+      layout_config = {
+        center = {
+          width = 0.8
+        }
+      },
+    },
     git_branches = {
       theme = 'dropdown',
       mappings = {
@@ -68,87 +76,89 @@ require('telescope').load_extension('ui-select')
 require('telescope').load_extension('zoxide')
 require('telescope').load_extension('changed_files')
 
--- Lists files in your current working directory, respects .gitignore
-vim.keymap.set('n', '<leader>ff', builtin.find_files)
+vim.keymap.set('n', '<leader>ff', builtin.find_files,
+  { desc = "List files in your current working directory (respect .gitignore)" })
 
--- Lists files in ~/.config/nvim/ (for easier vimrc editing)
-vim.keymap.set('n', '<leader>vff', custom.find_neovim_config_files)
+vim.keymap.set('n', '<leader>vff', custom.find_neovim_config_files,
+  { desc = "List files in ~/.config/nvim/ (for easier vimrc editing)" })
 
--- Lists files in ~/.xmonad/lib/ (for easier xmonad config editing)
-vim.keymap.set('n', '<leader>xff', custom.find_xmonad_config_files)
+vim.keymap.set('n', '<leader>xff', custom.find_xmonad_config_files,
+  { desc = "List files in ~/.xmonad/lib/ (for easier xmonad config editing)" })
 
--- Search for a string in your current working directory and get results live as you type (respecting .gitignore)
-vim.keymap.set('n', '<leader>fg', builtin.live_grep)
+vim.keymap.set('n', '<leader>fg', builtin.live_grep,
+  { desc = "Search for a string in your current working directory and get results live as you type (respecting .gitignore)" })
 
--- Search for a string only in selected folders (mnemonic: 'restricted find grep')
-vim.keymap.set('n', '<leader>rfg', custom.live_grep_in_selected_folders)
+vim.keymap.set('n', '<leader>rfg', custom.live_grep_in_selected_folders,
+  { desc = "Search for a string only in selected folders (mnemonic: 'restricted find grep')" })
 
--- Search for a string in ~/.config/nvim/
-vim.keymap.set('n', '<leader>vfg', custom.live_grep_config_files)
+vim.keymap.set('n', '<leader>vfg', custom.live_grep_config_files,
+  { desc = "Search for a string in ~/.config/nvim/" })
 
--- Search for a string in ~/.xmonad/lib/
-vim.keymap.set('n', '<leader>xfg', custom.live_grep_xmonad_config_files)
+vim.keymap.set('n', '<leader>xfg', custom.live_grep_xmonad_config_files,
+  { desc = "Search for a string in ~/.xmonad/lib/" })
 
--- Lists open buffers in current neovim instance
-vim.keymap.set('n', '<leader>bb', builtin.buffers)
+vim.keymap.set('n', '<leader>bb', builtin.buffers,
+  { desc = "List open buffers in current neovim instance" })
 
--- Lists available help tags and opens a new window with the relevant help info on <cr>
-vim.keymap.set('n', '<leader>fh', builtin.help_tags)
+vim.keymap.set('n', '<leader>fh', builtin.help_tags,
+  { desc = "List available help tags and opens a new window with the relevant help info on <cr>" })
 
--- Searches for the string under your cursor in your current working directory
-vim.keymap.set('n', '<leader>*', builtin.grep_string)
+vim.keymap.set('n', '<leader>*', builtin.grep_string,
+  { desc = "Searches for the string under your cursor in your current working directory" })
 
--- Lists files and folders in your current working directory, open files, navigate your filesystem, and create new files and folders
-vim.keymap.set('n', '<leader>fb', function() require('telescope').extensions.file_browser.file_browser({ hidden = true }) end)
+vim.keymap.set('n', '<leader>fb', function() require('telescope').extensions.file_browser.file_browser({ hidden = true }) end,
+  { desc = "List files and folders in your current working directory, open files, navigate your filesystem, and create new files and folders" })
 
--- Lists files and folders from your current buffer's directory
-vim.keymap.set('n', '<leader>cfb', custom.file_browser_current_buffer)
+vim.keymap.set('n', '<leader>cfb', custom.file_browser_current_buffer,
+  { desc = "List files and folders from your current buffer's directory" })
 
--- Lists files and folders in ~/.config/nvim/
-vim.keymap.set('n', '<leader>vfb', custom.file_browser_config_files)
+vim.keymap.set('n', '<leader>vfb', custom.file_browser_config_files,
+  { desc = "List files and folders in ~/.config/nvim/" })
 
--- Lists files and folders in ~/.xmonad/lib/
-vim.keymap.set('n', '<leader>xfb', custom.file_browser_xmonad_config_files)
+vim.keymap.set('n', '<leader>xfb', custom.file_browser_xmonad_config_files,
+  { desc = "List files and folders in ~/.xmonad/lib/" })
 
--- Lists items from the current window's location list
-vim.keymap.set('n', '<leader>loc', builtin.loclist)
+vim.keymap.set('n', '<leader>loc', builtin.loclist,
+  { desc = "List items from the current window's location list" })
 
--- Lists available plugin/user commands and runs them on <CR>
-vim.keymap.set('n', '<leader>cmd', builtin.commands)
+vim.keymap.set('n', '<leader>cmd', builtin.commands,
+  { desc = "List available plugin/user commands and runs them on <CR>" })
 
--- Lists vim options, allows you to edit the current value on <CR>
-vim.keymap.set('n', '<leader>vopt', builtin.vim_options)
+vim.keymap.set('n', '<leader>vopt', builtin.vim_options,
+  { desc = "List vim options, allows you to edit the current value on <CR>" })
 
--- Lists vim registers, pastes the contents of the register on <CR>
-vim.keymap.set('n', '<leader>rg', builtin.registers)
+vim.keymap.set('n', '<leader>rg', builtin.registers,
+  { desc = "List vim registers, pastes the contents of the register on <CR>" })
 
--- Live fuzzy search inside of the current open buffer
-vim.keymap.set('n', '<C-_>', custom.current_buffer_search)
+vim.keymap.set('n', '<C-_>', custom.current_buffer_search,
+  { desc = "Live fuzzy search inside of the current open buffer" })
 
--- Open previous picker in its identical state (incl. multi selections)
-vim.keymap.set('n', '<leader>rs', builtin.resume)
+vim.keymap.set('n', '<leader>rs', builtin.resume,
+  { desc = "Open previous picker in its identical state (incl. multi selections)" })
 
--- Lists cached pickers
-vim.keymap.set('n', '<leader>pk', builtin.pickers)
+vim.keymap.set('n', '<leader>pk', builtin.pickers,
+  { desc = "List cached pickers" })
 
--- Lists searches that were executed recently, and reruns them on <CR>
-vim.keymap.set('n', '<leader>se', builtin.search_history)
+vim.keymap.set('n', '<leader>se', builtin.search_history,
+  { desc = "List searches that were executed recently, and reruns them on <CR>" })
 
--- Lists normal mode keymappings
-vim.keymap.set('n', '<leader>km', builtin.keymaps)
+vim.keymap.set('n', '<leader>km', builtin.keymaps,
+  { desc = "List normal mode keymappings" })
 
--- Lists manpage entries
-vim.keymap.set('n', '<leader>man', builtin.man_pages)
+vim.keymap.set('n', '<leader>man', builtin.man_pages,
+  { desc = "List manpage entries" })
 
--- Lists built-in pickers and run them on <CR>
-vim.keymap.set('n', '<leader>bi', builtin.builtin)
+vim.keymap.set('n', '<leader>bi', builtin.builtin,
+  { desc = "List built-in pickers and run them on <CR>" })
 
--- Lists recently opened files
-vim.keymap.set('n', '<leader>of', builtin.oldfiles)
+vim.keymap.set('n', '<leader>of', builtin.oldfiles,
+  { desc = "List recently opened files" })
 
--- Lists 'frecent' files
-vim.keymap.set('n', '<leader>fr', require('telescope').extensions.frecency.frecency)
+vim.keymap.set('n', '<leader>fr', require('telescope').extensions.frecency.frecency,
+  { desc = "List 'frecent' files" })
 
--- telescope-Git mappings
-vim.keymap.set('n', '<leader>gbr', builtin.git_branches)
-vim.keymap.set('n', '<leader>gst', builtin.git_status)
+vim.keymap.set('n', '<leader>gbr', builtin.git_branches,
+  { desc = 'Run `git branches`' })
+
+vim.keymap.set('n', '<leader>gst', builtin.git_status,
+  { desc = 'Run `git status`' })

@@ -41,7 +41,6 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'tpope/vim-repeat'
 Plug 'wesQ3/vim-windowswap'
 Plug 'numToStr/Navigator.nvim'
-Plug 'folke/which-key.nvim'
 Plug 'jvgrootveld/telescope-zoxide'
 Plug 'famiu/bufdelete.nvim'
 Plug 'meain/vim-printer'
@@ -52,6 +51,7 @@ Plug 'numToStr/Comment.nvim'
 Plug 'nvim-telescope/telescope-symbols.nvim'
 Plug 'nvim-neo-tree/neo-tree.nvim'
 Plug 'MunifTanjim/nui.nvim'
+Plug 'linty-org/key-menu.nvim'
 
 call plug#end()
 ]])

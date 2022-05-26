@@ -2,18 +2,41 @@
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local custom_lsp_attach = function(client)
-  vim.keymap.set('n', 'K',          vim.lsp.buf.hover,                         { buffer = 0 })
-  vim.keymap.set('n', '<leader>gd', "<cmd>Telescope lsp_definitions<CR>",      { buffer = 0 })
-  vim.keymap.set('n', '<leader>gt', "<cmd>Telescope lsp_type_definitions<CR>", { buffer = 0 })
-  vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation,                { buffer = 0 })
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename,                        { buffer = 0 })
-  vim.keymap.set('n', '<leader>ac', vim.lsp.buf.code_action,                   { buffer = 0 })
-  vim.keymap.set('n', '<leader>df', vim.diagnostic.goto_next,                  { buffer = 0 })
-  vim.keymap.set('n', '<leader>db', vim.diagnostic.goto_prev,                  { buffer = 0 })
-  vim.keymap.set('n', '<leader>fo', vim.lsp.buf.formatting,                    { buffer = 0 })
-  vim.keymap.set('n', '<leader>dl', "<cmd>Telescope diagnostics<CR>",          { buffer = 0 })
-  vim.keymap.set('n', '<leader>ds', "<cmd>Telescope lsp_document_symbols<CR>", { buffer = 0 })
-  vim.keymap.set('n', '<leader>gr', "<cmd>Telescope lsp_references<CR>",       { buffer = 0 })
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover,
+    { desc = "Open hover documentation", buffer = 0 })
+
+  vim.keymap.set('n', '<leader>gd', "<cmd>Telescope lsp_definitions<CR>",
+    { desc = "Go to definition of word under cursor, or show all if multiple", buffer = 0 })
+
+  vim.keymap.set('n', '<leader>gt', "<cmd>Telescope lsp_type_definitions<CR>",
+    { desc = "Go to definition of type of word under cursor, or show all if multiple", buffer = 0 })
+
+  vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation,
+    { desc = "Go to implementation of word under cursor, or show all if multiple", buffer = 0 })
+
+  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename,
+    { desc = "Rename symbol under cursor", buffer = 0 })
+
+  vim.keymap.set('n', '<leader>ac', vim.lsp.buf.code_action,
+    { desc = "Open code actions menu", buffer = 0 })
+
+  vim.keymap.set('n', '<leader>df', vim.diagnostic.goto_next,
+    { desc = "Go to next diagnostic message", buffer = 0 })
+
+  vim.keymap.set('n', '<leader>db', vim.diagnostic.goto_prev,
+    { desc = "Go to previous diagnostic message", buffer = 0 })
+
+  vim.keymap.set('n', '<leader>fo', vim.lsp.buf.formatting,
+    { desc = "Format current buffer", buffer = 0 })
+
+  vim.keymap.set('n', '<leader>dl', "<cmd>Telescope diagnostics<CR>",
+    { desc = "List all diagnostic messages for current buffer", buffer = 0 })
+
+  vim.keymap.set('n', '<leader>ds', "<cmd>Telescope lsp_document_symbols<CR>",
+    { desc = "List all symbols for current buffer", buffer = 0 })
+
+  vim.keymap.set('n', '<leader>gr', "<cmd>Telescope lsp_references<CR>",
+    { desc = "List all references for word under the cursor", buffer = 0 })
 
   -- Use LSP as the handler for omnifunc.
   --    See `:help omnifunc` and `:help ins-completion` for more information.
