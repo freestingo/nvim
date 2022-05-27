@@ -1,14 +1,15 @@
 -- thanks to https://www.youtube.com/watch?v=puWgHa7k3SY
+local builtin = require('telescope.builtin')
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 local custom_lsp_attach = function(client)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover,
     { desc = "Open hover documentation", buffer = 0 })
 
-  vim.keymap.set('n', '<leader>gd', "<cmd>Telescope lsp_definitions<CR>",
+  vim.keymap.set('n', '<leader>gd', builtin.lsp_definitions,
     { desc = "Go to definition of word under cursor, or show all if multiple", buffer = 0 })
 
-  vim.keymap.set('n', '<leader>gt', "<cmd>Telescope lsp_type_definitions<CR>",
+  vim.keymap.set('n', '<leader>gt', builtin.lsp_type_definitions,
     { desc = "Go to definition of type of word under cursor, or show all if multiple", buffer = 0 })
 
   vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation,
@@ -29,13 +30,19 @@ local custom_lsp_attach = function(client)
   vim.keymap.set('n', '<leader>fo', vim.lsp.buf.formatting,
     { desc = "Format current buffer", buffer = 0 })
 
-  vim.keymap.set('n', '<leader>dl', "<cmd>Telescope diagnostics<CR>",
+  vim.keymap.set('n', '<leader>dl', builtin.diagnostics,
     { desc = "List all diagnostic messages for current buffer", buffer = 0 })
 
-  vim.keymap.set('n', '<leader>ds', "<cmd>Telescope lsp_document_symbols<CR>",
+  vim.keymap.set('n', '<leader>dL', function() builtin.diagnostics({ severity = vim.diagnostic.severity.ERROR }) end,
+    { desc = "List all diagnostic error messages for open buffers" })
+
+  vim.keymap.set('n', '<leader>ds', builtin.lsp_document_symbols,
     { desc = "List all symbols for current buffer", buffer = 0 })
 
-  vim.keymap.set('n', '<leader>gr', "<cmd>Telescope lsp_references<CR>",
+  vim.keymap.set('n', '<leader>ws', builtin.lsp_workspace_symbols,
+    { desc = "List all symbols for current workspace", buffer = 0 })
+
+  vim.keymap.set('n', '<leader>gr', builtin.lsp_references,
     { desc = "List all references for word under the cursor", buffer = 0 })
 
   -- Use LSP as the handler for omnifunc.
