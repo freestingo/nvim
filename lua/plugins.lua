@@ -12,7 +12,6 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 Plug 'onsails/lspkind.nvim'
-Plug 'jiangmiao/auto-pairs'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -52,6 +51,7 @@ Plug 'nvim-telescope/telescope-symbols.nvim'
 Plug 'nvim-neo-tree/neo-tree.nvim'
 Plug 'MunifTanjim/nui.nvim'
 Plug 'linty-org/key-menu.nvim'
+Plug 'windwp/nvim-autopairs'
 
 call plug#end()
 ]])
