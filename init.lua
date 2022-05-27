@@ -92,6 +92,9 @@ vim.keymap.set('i', 'kj', '<ESC>',
 vim.keymap.set('n', '<C-c>', '<cmd>Bdelete<CR>',
   { desc = "Delete buffer and preserve layout", silent = true })
 
+vim.keymap.set('n', '<A-c>', '<cmd>bd<CR>',
+  { desc = "Delete buffer and close its split, if present", silent = true })
+
 vim.keymap.set('n', '<C-s>', '<cmd>w<CR>',
   { desc = "Save current buffer", silent = true })
 
