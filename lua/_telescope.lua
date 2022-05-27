@@ -60,6 +60,9 @@ require('telescope').setup {
     }
   },
   extensions = {
+    ["ui-select"] = {
+      themes.get_dropdown{}
+    },
     frecency = {
       workspaces = {
         ["wpf"] = '/home/nicolo/oncode/projects/essence/whirlpool-frontend',
