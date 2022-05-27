@@ -54,6 +54,7 @@ Plug 'linty-org/key-menu.nvim'
 Plug 'windwp/nvim-autopairs'
 Plug 'wfxr/minimap.vim'
 Plug 'petertriho/nvim-scrollbar'
+Plug 'akinsho/git-conflict.nvim'
 
 call plug#end()
 ]])
