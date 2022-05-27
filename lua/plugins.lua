@@ -52,6 +52,8 @@ Plug 'nvim-neo-tree/neo-tree.nvim'
 Plug 'MunifTanjim/nui.nvim'
 Plug 'linty-org/key-menu.nvim'
 Plug 'windwp/nvim-autopairs'
+Plug 'wfxr/minimap.vim'
+Plug 'petertriho/nvim-scrollbar'
 
 call plug#end()
 ]])

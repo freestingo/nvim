@@ -25,6 +25,8 @@ require('_tabout')
 require('_comment')
 require('_neo-tree')
 require('_key-menu')
+require('_minimap')
+require('_nvim-scrollbar')
 
 -- sets
 local set = vim.opt
