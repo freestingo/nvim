@@ -24,7 +24,6 @@ require('_trim')
 require('_tabout')
 require('_comment')
 require('_neo-tree')
-require('_key-menu')
 require('_minimap')
 require('_nvim-scrollbar')
 require('_git-conflict')
@@ -116,3 +115,17 @@ vim.keymap.set('t', 'shq', '<C-\\><C-n>:bd!<CR>',
 
 vim.keymap.set('t', 'shf', '<C-\\><C-n>',
   { desc = "Exit insert mode on terminal", silent = true })
+
+vim.keymap.set('n', '<leader>crp',
+  function()
+    vim.fn.setreg('*', vim.fn.expand('%'))
+    print("Copied current buffer's relative path to clipboard!")
+  end,
+  { desc = "Copy current buffer's relative path to clipboard", silent = true })
+
+vim.keymap.set('n', '<leader>cap',
+  function()
+    vim.fn.setreg('*', vim.fn.expand('%:p'))
+    print("Copied current buffer's absolute path to clipboard!")
+  end,
+  { desc = "Copy current buffer's absolute path to clipboard", silent = true })
