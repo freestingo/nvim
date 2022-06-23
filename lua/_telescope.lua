@@ -79,7 +79,7 @@ require('telescope').load_extension('ui-select')
 require('telescope').load_extension('zoxide')
 require('telescope').load_extension('changed_files')
 
-vim.keymap.set('n', '<leader>ff', builtin.find_files,
+vim.keymap.set('n', '<leader>ff', custom.find_files_with_multiopen,
   { desc = "List files in your current working directory (respect .gitignore)" })
 
 vim.keymap.set('n', '<leader>vff', custom.find_neovim_config_files,

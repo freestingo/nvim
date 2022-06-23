@@ -1,4 +1,31 @@
+local actions = require('telescope.actions')
+
 local M = {}
+
+local multiopen_attach_mappings = function()
+  actions.select_default:replace(
+    function(prompt_bufnr)
+      local state = require "telescope.actions.state"
+      local picker = state.get_current_picker(prompt_bufnr)
+      local multi = picker:get_multi_selection()
+      local single = picker:get_selection()
+      local str = ""
+      if #multi > 0 then
+        for _, j in pairs(multi) do
+          str = str.."edit "..j[1].." | "
+        end
+      end
+      str = str.."edit "..single[1]
+      -- To avoid populating qf or doing ":edit! file", close the prompt first
+      actions.close(prompt_bufnr)
+      vim.api.nvim_command(str)
+    end)
+  return true
+end
+
+M.find_files_with_multiopen = function()
+  require('telescope.builtin').find_files({ attach_mappings = multiopen_attach_mappings })
+end
 
 M.current_buffer_search = function()
   require('telescope.builtin').current_buffer_fuzzy_find({
