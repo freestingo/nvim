@@ -27,6 +27,7 @@ require('_neo-tree')
 require('_minimap')
 require('_nvim-scrollbar')
 require('_git-conflict')
+require('_navic')
 
 -- sets
 local set = vim.opt

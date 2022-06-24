@@ -55,6 +55,7 @@ Plug 'windwp/nvim-autopairs'
 Plug 'wfxr/minimap.vim'
 Plug 'petertriho/nvim-scrollbar'
 Plug 'akinsho/git-conflict.nvim'
+Plug 'SmiteshP/nvim-navic'
 
 call plug#end()
 ]])

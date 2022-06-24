@@ -1,8 +1,11 @@
 -- thanks to https://www.youtube.com/watch?v=puWgHa7k3SY
 local builtin = require('telescope.builtin')
+local navic = require('nvim-navic')
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-local custom_lsp_attach = function(client)
+local custom_lsp_attach = function(client, bufnr)
+  navic.attach(client, bufnr)
+
   vim.keymap.set('n', 'K', vim.lsp.buf.hover,
     { desc = "Open hover documentation", buffer = 0 })
 
