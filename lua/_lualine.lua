@@ -1,6 +1,7 @@
 local navic = require('nvim-navic')
+local tabline = require('tabline')
 
-require('tabline').setup {
+tabline.setup {
   enable = false,
   options = {
     show_filename_only = true,
@@ -37,8 +38,8 @@ require('lualine').setup {
   tabline = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = { require'tabline'.tabline_buffers },
-    lualine_x = {},
+    lualine_c = { tabline.tabline_buffers },
+    lualine_x = { tabline.tabline_tabs },
     lualine_y = {},
     lualine_z = {}
   },
@@ -49,3 +50,9 @@ vim.keymap.set('n', 'H', '<cmd>TablineBufferPrevious<CR>',
   { desc = "Go to previous buffer on bufferline", silent = true })
 vim.keymap.set('n', 'L', '<cmd>TablineBufferNext<CR>',
   { desc = "Go to next buffer on bufferline", silent = true })
+vim.keymap.set('n', '<C-H>', 'gT',
+  { desc = "Go to previous tab on tabline", silent = true })
+vim.keymap.set('n', '<C-L>', 'gt',
+  { desc = "Go to next tab on tabline", silent = true })
+vim.keymap.set('n', '<leader>trn', function() vim.ui.input({ prompt = 'Enter new name for current tab: ' }, tabline.tab_rename) end,
+  { desc = "Rename current tab on tabline", silent = true })
